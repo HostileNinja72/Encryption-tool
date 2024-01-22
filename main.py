@@ -1,5 +1,7 @@
 from Algorithms.aes import AES
 from Algorithms.chacha20 import ChaCha20
+from Algorithms.rsa import RSA
+import logging
 
 import time, secrets
 from handle_argv import handle_argv
@@ -8,6 +10,11 @@ import os
 import hashlib
 import json
 
+log_directory = "history"
+os.makedirs(log_directory, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_directory, 'his.log'),
+                    level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 RESET = "\033[0m"
 green = "\u001b[32m"
@@ -48,16 +55,20 @@ def write_bytes_to_file(data_bytes, output_path):
 
 
 def main():
+    logging.info("Main function started")
     # Generating the key
     master_key = int(generate_random_key().hex(), 16)
     
     #handling the args
     algorithm, mode, user_input, path_to_the_plain, key, nonce, iv, dec, json_path =  handle_argv()
+    logging.info(f"Arguments handled: Algorithm - {algorithm}, Mode - {mode}")
+
     
     output_directory = "output"
     output_chacha_directory = "output_cha"
     os.makedirs(output_directory, exist_ok=True)
     os.makedirs(output_chacha_directory, exist_ok=True)
+    logging.info("Output directories created")
     if json_path:
         with open(json_path, 'r') as json_file:
             data = json.load(json_file)
@@ -132,13 +143,16 @@ def main():
             #print("Decrypted:  " + str(decrypted_text))
 
             print(f"Encryption Time: {encryption_time:.6f} milliseconds")
+            logging.info("AES Encryption Completed")
         if dec: #decryption
+            
             if isinstance(key, str) and ".txt" in key:
                 with open(key, 'r') as file:
                     key = int(file.read())
                     aes.set_key(key)
             else:
                 aes.set_key(int(key, 16))
+                
 
             if user_input:
                 ciphertext = user_input
@@ -159,6 +173,7 @@ def main():
             #print(green +"Master Key: " + key + RESET)
 
             print(f"Decryption Time: {decryption_time:.6f} milliseconds")
+            logging.info("AES Decryption completed")
             
 
 
@@ -197,9 +212,9 @@ def main():
                 json.dump(metadata_and_key, json_file, indent=2)
 
             print("Encryption Time: {:.6f} milliseconds".format(encryption_time))
+            logging.info("ChaCha20 Encryption Completed")
         
         else:  # Decryption
-
             cipher = ChaCha20(bytes.fromhex(key),nonce)
 
             output_file_path = os.path.join(output_chacha_directory, "output_chacha20.hex")
@@ -214,6 +229,20 @@ def main():
             write_bytes_to_file(decrypted_text, decrypted_output_file_path)
 
             print("Decryption Time: {:.6f} milliseconds".format(decryption_time))
+            logging.info("ChaCha20 Decryption Completed")
+
+    elif algorithm == "RSA":
+        public_key, private_key = RSA.generate_keys()
+        encrypted_msg = RSA.encrypt(public_key, user_input)
+        decrypted_msg = RSA.decrypt(private_key, encrypted_msg)
+
+        print("Encrypted message:", encrypted_msg)
+        print("Decrypted message:", decrypted_msg)
+    
+
+
+    
+
 
 
             

@@ -1,0 +1,40 @@
+2024-01-22 03:00:04,645 - INFO - Main function started
+2024-01-22 03:00:04,653 - INFO - Arguments handled: Algorithm - ChaCha20, Mode - None
+2024-01-22 03:00:04,653 - INFO - Output directories created
+2024-01-22 05:04:52,688 - INFO - Main function started
+2024-01-22 05:04:52,706 - INFO - Arguments handled: Algorithm - ChaCha20, Mode - None
+2024-01-22 05:04:52,706 - INFO - Output directories created
+2024-01-22 05:04:56,170 - INFO - ChaCha20 Encryption Completed
+2024-01-22 05:49:18,335 - INFO - Main function started
+2024-01-22 05:49:18,338 - INFO - Arguments handled: Algorithm - AES, Mode - ECB
+2024-01-22 05:49:18,338 - INFO - Output directories created
+2024-01-22 05:49:27,565 - INFO - AES Encryption Completed
+2024-01-22 05:51:18,227 - INFO - Main function started
+2024-01-22 05:51:28,402 - INFO - Main function started
+2024-01-22 05:51:28,406 - INFO - Arguments handled: Algorithm - AES, Mode - ECB
+2024-01-22 05:51:28,406 - INFO - Output directories created
+2024-01-22 05:51:40,706 - INFO - AES Decryption completed
+2024-01-22 05:52:04,291 - INFO - Main function started
+2024-01-22 05:52:04,294 - INFO - Arguments handled: Algorithm - AES, Mode - CTR
+2024-01-22 05:52:04,294 - INFO - Output directories created
+2024-01-22 05:52:13,087 - INFO - AES Encryption Completed
+2024-01-22 05:52:55,909 - INFO - Main function started
+2024-01-22 05:52:55,913 - INFO - Arguments handled: Algorithm - AES, Mode - CTR
+2024-01-22 05:52:55,913 - INFO - Output directories created
+2024-01-22 05:53:05,405 - INFO - AES Decryption completed
+2024-01-22 05:53:32,525 - INFO - Main function started
+2024-01-22 05:53:32,529 - INFO - Arguments handled: Algorithm - AES, Mode - CBC
+2024-01-22 05:53:32,529 - INFO - Output directories created
+2024-01-22 05:53:42,350 - INFO - AES Encryption Completed
+2024-01-22 05:54:09,052 - INFO - Main function started
+2024-01-22 05:54:09,055 - INFO - Arguments handled: Algorithm - AES, Mode - CBC
+2024-01-22 05:54:09,057 - INFO - Output directories created
+2024-01-22 05:54:20,208 - INFO - AES Decryption completed
+2024-01-22 05:55:05,819 - INFO - Main function started
+2024-01-22 05:55:05,823 - INFO - Arguments handled: Algorithm - ChaCha20, Mode - None
+2024-01-22 05:55:05,823 - INFO - Output directories created
+2024-01-22 05:55:08,814 - INFO - ChaCha20 Encryption Completed
+2024-01-22 05:55:49,075 - INFO - Main function started
+2024-01-22 05:55:49,077 - INFO - Arguments handled: Algorithm - ChaCha20, Mode - None
+2024-01-22 05:55:49,078 - INFO - Output directories created
+2024-01-22 05:55:51,743 - INFO - ChaCha20 Decryption Completed

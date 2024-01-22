@@ -72,14 +72,5 @@ class ChaCha20:
             encrypted += encrypted_block
         return encrypted
 
-# Example usage
-key = b'This is 32-byte key for ChaCha20' # Must be 32 bytes
-nonce = b'This is 12' # Must be 12 bytes
-cipher = ChaCha20(key, nonce)
-plaintext = b'Hello, ChaCha20!'
-ciphertext = cipher.encrypt(plaintext)
-decrypted = cipher.encrypt(ciphertext)  # ChaCha20 uses the same function for encrypt and decrypt
 
 
-print("Encrypted:", ciphertext)
-print("Decrypted:", decrypted)
