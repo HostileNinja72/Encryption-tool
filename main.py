@@ -1,4 +1,6 @@
 from Algorithms.aes import AES
+from Algorithms.chacha20 import ChaCha20
+
 import time, secrets
 from handle_argv import handle_argv
 import mimetypes
@@ -14,8 +16,8 @@ def filetype_handler(type):
     return type.split('/')[1]
     
 #Generate a secure random 128 bits key
-def generate_random_key():
-    return secrets.token_bytes(16)
+def generate_random_key(n=16):
+    return secrets.token_bytes(n)
 
 def compute_file_hash(file_path):
     hasher = hashlib.sha256()
@@ -53,7 +55,9 @@ def main():
     algorithm, mode, user_input, path_to_the_plain, key, nonce, iv, dec, json_path =  handle_argv()
     
     output_directory = "output"
+    output_chacha_directory = "output_cha"
     os.makedirs(output_directory, exist_ok=True)
+    os.makedirs(output_chacha_directory, exist_ok=True)
     if json_path:
         with open(json_path, 'r') as json_file:
             data = json.load(json_file)
@@ -64,6 +68,9 @@ def main():
             elif mode == "CBC":
                 iv = int(data["iv or nonce"], 16) 
                 iv = iv.to_bytes((iv.bit_length()+7) // 8, 'big') 
+            elif algorithm == "ChaCha20":
+                nonce = int(data["nonce"], 16)
+                nonce = nonce.to_bytes((nonce.bit_length()+7)// 8, 'big')
             type = data["metadata"]["filetype"]
     #If the user wish to use AES and encryption algorithm
     if algorithm == "AES":
@@ -152,6 +159,63 @@ def main():
             #print(green +"Master Key: " + key + RESET)
 
             print(f"Decryption Time: {decryption_time:.6f} milliseconds")
+            
+
+
+    elif algorithm == "ChaCha20":
+        if not dec:
+            key = generate_random_key(32)
+            nonce = generate_random_key(12)
+            cipher = ChaCha20(key, nonce)
+
+            if user_input:
+                plaintext = user_input.encode('utf-8').hex()
+            else:
+                with open(path_to_the_plain, 'rb') as file:
+                    metadata = extract_file_metadata(path_to_the_plain)
+                    text_data = file.read()
+                plaintext = text_data.hex()
+                original_file_hash = compute_file_hash(path_to_the_plain)
+
+            start_time = time.time()
+            ciphertext = cipher.encrypt(bytes.fromhex(plaintext))
+            encryption_time = (time.time() - start_time) * 1000
+
+            metadata_and_key = {
+                "metadata": metadata,
+                "hash": original_file_hash,
+                "key": "0x" + key.hex(),
+                "nonce": nonce.hex()
+            }
+
+            output_file_path = os.path.join(output_chacha_directory, "output_chacha20.hex")
+            with open(output_file_path, 'w') as output_file:
+                output_file.write(ciphertext.hex())
+
+            json_file_path = os.path.join(output_chacha_directory, "metadata_and_key_chacha20.json")
+            with open(json_file_path, 'w') as json_file:
+                json.dump(metadata_and_key, json_file, indent=2)
+
+            print("Encryption Time: {:.6f} milliseconds".format(encryption_time))
+        
+        else:  # Decryption
+
+            cipher = ChaCha20(bytes.fromhex(key),nonce)
+
+            output_file_path = os.path.join(output_chacha_directory, "output_chacha20.hex")
+            with open(output_file_path, 'r') as file:
+                ciphertext = file.read()
+
+            start_time = time.time()
+            decrypted_text = cipher.encrypt(bytes.fromhex(ciphertext))
+            decryption_time = (time.time() - start_time) * 1000
+
+            decrypted_output_file_path = os.path.join(output_chacha_directory, f"decrypted_chacha20.{filetype_handler(type)}")
+            write_bytes_to_file(decrypted_text, decrypted_output_file_path)
+
+            print("Decryption Time: {:.6f} milliseconds".format(decryption_time))
+
+
             
 
             

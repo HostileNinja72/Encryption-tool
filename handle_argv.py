@@ -18,10 +18,11 @@ def handle_argv():
 
     args = parser.parse_args()
 
-    if args. m and args.a != "AES":
+    if args.M and args.a != "AES":
         print("Modes are ONLY available for AES")
         exit(1)
 
+   
     if args.a == 'AES': #if the algorithm chosend is AES
         if not args.M:
             print("Please choose a mode for AES (CTR, CBC, GCM, ECB).")
