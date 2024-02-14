@@ -60,5 +60,4 @@ python main.py -a RSA -d -m "Encrypted message"
 - RSA encryption is not suitable for large data volumes due to performance constraints.
 - This tool is intended for educational and experimental use and should not be used as a primary method for sensitive data encryption in a production environment.
 
-## Contributions
-Contributions, bug reports, and feature requests are welcome. Please refer to the contributing guidelines for more information.
+
