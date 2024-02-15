@@ -38,3 +38,15 @@
 2024-01-22 05:55:49,077 - INFO - Arguments handled: Algorithm - ChaCha20, Mode - None
 2024-01-22 05:55:49,078 - INFO - Output directories created
 2024-01-22 05:55:51,743 - INFO - ChaCha20 Decryption Completed
+2024-01-22 11:45:00,273 - INFO - Main function started
+2024-01-22 11:45:00,282 - INFO - Arguments handled: Algorithm - RSA, Mode - None
+2024-01-22 11:45:00,282 - INFO - Output directories created
+2024-01-22 11:45:32,349 - INFO - Main function started
+2024-01-22 11:45:32,349 - INFO - Arguments handled: Algorithm - AES, Mode - CTR
+2024-01-22 11:45:32,349 - INFO - Output directories created
+2024-01-22 11:45:41,881 - INFO - AES Encryption Completed
+2024-01-22 11:46:49,929 - INFO - Main function started
+2024-01-22 11:46:54,949 - INFO - Main function started
+2024-01-22 11:46:54,957 - INFO - Arguments handled: Algorithm - AES, Mode - CTR
+2024-01-22 11:46:54,957 - INFO - Output directories created
+2024-01-22 11:47:06,289 - INFO - AES Decryption completed

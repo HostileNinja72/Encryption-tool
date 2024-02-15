@@ -7,12 +7,11 @@ This tool is designed to provide robust cryptographic functionalities, including
 - Support for AES (with modes ECB, CBC, CTR, GCM), ChaCha20, and RSA algorithms.
 - Encryption and decryption capabilities for both textual data and files.
 - Secure key, nonce, and IV handling for different cryptographic modes.
-- File integrity verification through SHA-256 hashing.
-- User-friendly command-line interface for easy interaction.
+
 
 ## Requirements
 - Python environment (Preferably Python 3.6 or higher)
-- Required Python libraries: `secrets`, `hashlib`, `mimetypes`, `json`, `logging`
+- Required Python libraries: `secrets`, `hashlib`, `mimetypes`, `json`, `logging`, `tqdm`
 - Operating System: Windows, Linux, or macOS
 
 ## Installation
@@ -47,17 +46,10 @@ Encrypt a file using AES in CBC mode:
 python main.py -a AES -M CBC -p path/to/file
 ```
 
-Decrypt a message using RSA:
-```bash
-python main.py -a RSA -d -m "Encrypted message"
-```
-
 ## Logging
 - Logs are stored in the `history` directory, which is automatically created.
 - Log files provide a record of operations, errors, and other important information.
 
-## Limitations
-- RSA encryption is not suitable for large data volumes due to performance constraints.
-- This tool is intended for educational and experimental use and should not be used as a primary method for sensitive data encryption in a production environment.
+
 
 

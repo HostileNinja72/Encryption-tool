@@ -232,13 +232,14 @@ def main():
             logging.info("ChaCha20 Decryption Completed")
 
     elif algorithm == "RSA":
-        public_key, private_key = RSA.generate_keys()
-        encrypted_msg = RSA.encrypt(public_key, user_input)
-        decrypted_msg = RSA.decrypt(private_key, encrypted_msg)
+        if not dec:
+            public_key, private_key = RSA.generate_keys()
+            encrypted_msg = RSA.encrypt(public_key, user_input)
+            decrypted_msg = RSA.decrypt(private_key, encrypted_msg)
 
-        print("Encrypted message:", encrypted_msg)
-        print("Decrypted message:", decrypted_msg)
-    
+            print("Encrypted message:", encrypted_msg)
+            print("Decrypted message:", decrypted_msg)
+        
 
 
     
