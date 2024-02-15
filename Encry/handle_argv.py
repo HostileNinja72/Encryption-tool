@@ -1,5 +1,5 @@
 import argparse
-from ansi import * 
+from Soft.Encry.ansi import * 
 
 def handle_argv():
     parser = argparse.ArgumentParser(description="Encryption Tool")

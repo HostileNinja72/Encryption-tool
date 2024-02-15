@@ -4,7 +4,7 @@ from Algorithms.rsa import RSA
 import logging
 
 import time, secrets
-from handle_argv import handle_argv
+from Soft.Encry.handle_argv import handle_argv
 import mimetypes
 import os
 import hashlib
@@ -231,14 +231,7 @@ def main():
             print("Decryption Time: {:.6f} milliseconds".format(decryption_time))
             logging.info("ChaCha20 Decryption Completed")
 
-    elif algorithm == "RSA":
-        if not dec:
-            public_key, private_key = RSA.generate_keys()
-            encrypted_msg = RSA.encrypt(public_key, user_input)
-            decrypted_msg = RSA.decrypt(private_key, encrypted_msg)
-
-            print("Encrypted message:", encrypted_msg)
-            print("Decrypted message:", decrypted_msg)
+    
         
 
 
